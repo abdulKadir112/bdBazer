@@ -1,8 +1,14 @@
-import { defineConfig } from 'vite'
-import tailwindcss from '@tailwindcss/vite'
-
-export default defineConfig({
+// vite.config.js
+export default {
+  // ... অন্যান্য কনফিগ
   plugins: [
-    tailwindcss(),
-  ],
-})
+    {
+      name: 'force-close',
+      closeBundle() {
+        if (process.env.VERCEL) {
+          process.exit(0);
+        }
+      }
+    }
+  ]
+}
